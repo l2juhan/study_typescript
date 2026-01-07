@@ -10,6 +10,34 @@ function isNumberRetBool(input: any): boolean{
   return typeof input === 'number';
 }
 
-console.log(isNumber(10));
-
 let number: any = 5;
+console.log(isNumberRetBool(number)); // false로 나옴 (any type)
+console.log(isNumber(number)); // true로 나옴 (number type)
+
+interface Doge{
+  name: string;
+  age: number;
+}
+interface Cat{
+  name: string;
+  breed: string;
+}
+
+type DogeOrCat = Doge | Cat;
+
+const isDoge = (animal: DogeOrCat): animal is Doge => {
+  return (animal as Doge).age !== undefined;
+}
+const doge: DogeOrCat = Math.random() > 0.5 ? {
+  name: 'doge',
+  age: 32,
+} : {
+  name: 'cat',
+  breed: 'korean',
+}
+
+if(isDoge(doge)){
+  doge;
+}else{
+  doge;
+}
